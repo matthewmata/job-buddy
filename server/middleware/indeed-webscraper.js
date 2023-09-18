@@ -1,8 +1,6 @@
 const puppeteer = require("puppeteer");
 
-const indeedWebScraper = async (
-  url = "https://www.indeed.com/jobs?q=react+-senior+-sr+-staff+-architect+-Principal+-manager&l=Remote&fromage=1"
-) => {
+const indeedWebScraper = async (url) => {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   const allPosts = [];
@@ -35,6 +33,7 @@ const indeedWebScraper = async (
           url,
           salary,
           description,
+          date: new Date().toString(),
         };
       });
     });
@@ -53,9 +52,14 @@ const indeedWebScraper = async (
       break;
     }
   }
+  // UNCOMMENT TO CHECK
+  console.log(allPosts);
 
   await browser.close();
   return allPosts;
 };
 
-export default { indeedWebScraper };
+indeedWebScraper(
+  "https://www.indeed.com/jobs?q=react+-senior+-sr+-staff+-architect+-Principal+-manager&l=Remote&fromage=1"
+);
+// export default { indeedWebScraper };
