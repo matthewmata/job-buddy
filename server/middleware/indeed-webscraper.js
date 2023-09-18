@@ -22,9 +22,7 @@ const indeedWebScraper = async (url) => {
         const url = post.querySelector(".jobTitle > a").href ?? "n/a";
         const salary =
           post.querySelector(".salary-snippet-container")?.innerText ?? "n/a";
-        const description = Array.from(
-          post.querySelectorAll(".job-snippet li")
-        ).map((p) => p.innerText);
+        const description = post.querySelector(".job-snippet").innerText;
 
         return {
           title,
