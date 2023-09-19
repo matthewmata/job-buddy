@@ -12,7 +12,7 @@ const indeedWebScraper = async (url) => {
 
   // loops through each page job posts
   while (true) {
-    await page.waitForSelector("#mosaic-jobResults", { timeout: 10_000 });
+    await page.waitForSelector("#mosaic-jobResults", { timeout: 20_000 });
     // gets post info
     const pagePosts = await page.evaluate(() => {
       const posts = document.querySelectorAll(".job_seen_beacon");
