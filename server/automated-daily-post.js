@@ -9,8 +9,12 @@ const everyMin = "*/1 * * * *";
 
 cron.schedule(everyMin, async () => {
   console.log("RUNNING!");
-  console.log(`${process.env.ADDRESS}:${process.env.PORT}/api/job-buddy`);
-  await axios.post(`${process.env.ADDRESS}:${process.env.PORT}/api/job-buddy`);
+  console.log(
+    `http://${process.env.ADDRESS}:${process.env.PORT}/api/job-buddy`
+  );
+  await axios.post(
+    `http://${process.env.ADDRESS}:${process.env.PORT}/api/job-buddy`
+  );
   try {
     console.log("successful post");
   } catch {
