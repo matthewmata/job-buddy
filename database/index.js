@@ -18,5 +18,5 @@ mongoose.connect(url, {
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection failed: "));
 db.once("open", () => {
-  console.log("Connected successfully ", url);
+  console.log("Connected successfully ");
 });

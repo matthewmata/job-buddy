@@ -14,4 +14,6 @@ app.use(express.urlencoded({extended: true}));
 // router to route request methods
 app.use('/api', router);
 
-app.listen(port, () => console.log(`App listening on port ${port}!`))
+app.listen(process.env.PORT || 3000, () =>
+  console.log(`App listening on port ${port}!`)
+);
