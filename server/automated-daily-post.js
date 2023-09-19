@@ -5,9 +5,8 @@ dotenv.config();
 
 // schedules post each day at "00:00"
 const everyDay = "0 0 * * *";
-const everyMin = "*/1 * * * *";
 
-cron.schedule(everyMin, async () => {
+cron.schedule(everyDay, async () => {
   console.log("RUNNING!");
   console.log(
     `http://${process.env.ADDRESS}:${process.env.PORT}/api/job-buddy`
