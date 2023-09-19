@@ -7,6 +7,7 @@ const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
 const clusterName = process.env.CLUSTERNAME;
 const databaseName = process.env.DATABASENAME;
+console.log(url);
 const url = `mongodb+srv://${username}:${password}@${clusterName}.mongodb.net/${databaseName}?retryWrites=true&w=majority`
 
 // connect to mongoDB database
