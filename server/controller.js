@@ -2,6 +2,7 @@ const db = require("../database/models");
 const webscraperAggregation = require('./utils/webscraper-aggregation');
 
 module.exports = {
+  // retrieve all posts
   retrieveAll: async (req, res) => {
     const jobData = await db.find({})
     try {
@@ -10,6 +11,7 @@ module.exports = {
       res.status(400).send(err);
     }
   },
+  // create more posts
   createMany: async (req, res) => {
     const newJobPostings = await webscraperAggregation();
     await db.insertMany(newJobPostings);
@@ -19,6 +21,7 @@ module.exports = {
       res.status(400).send(err);
     }
   },
+  // delete all posts
   deleteAll: async (req, res) => {
     await db.deleteMany({});
     try {

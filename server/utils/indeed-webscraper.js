@@ -1,13 +1,16 @@
 const puppeteer = require("puppeteer");
 
 const indeedWebScraper = async (url) => {
+  // browser set up
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
+  await page.goto(url);
+
   const allPosts = [];
   let pageNumber = 1;
   let pageNextExists = true;
-  await page.goto(url);
 
+  // loops through each page job posts
   while (true) {
     await page.waitForSelector("#mosaic-jobResults", { timeout: 10_000 });
     // gets post info
@@ -35,30 +38,28 @@ const indeedWebScraper = async (url) => {
         };
       });
     });
+
+    // adds posts
     allPosts.push(...pagePosts);
+    // checks if we are on last page
     pageNextExists = await page.evaluate(() => {
       return document.querySelector('[data-testid="pagination-page-next"]');
     });
 
     pageNumber++;
+    // moves to next page if exists
     if (pageNextExists !== null) {
       await Promise.all([
-        page.waitForNavigation(), // The promise resolves after navigation has finished
-        page.click(`a[aria-label="${pageNumber}"]`), // Clicking the link will indirectly cause a navigation
+        page.waitForNavigation(),
+        page.click(`a[aria-label="${pageNumber}"]`),
       ]);
     } else {
       break;
     }
   }
-  // UNCOMMENT TO CHECK
-  // console.log(allPosts);
 
   await browser.close();
   return allPosts;
 };
-
-// indeedWebScraper(
-//   "https://www.indeed.com/jobs?q=react+-senior+-sr+-staff+-architect+-Principal+-manager&l=Remote&fromage=1"
-// );
 
 module.exports = indeedWebScraper;

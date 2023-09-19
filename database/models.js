@@ -1,6 +1,7 @@
 const db = require("./index");
 const mongoose = require("mongoose");
 
+
 const jobsSchema = new mongoose.Schema({
   title: { type: String, required: true },
   companyName: { type: String, required: true },
