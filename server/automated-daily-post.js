@@ -1,7 +1,7 @@
 const axios = require('axios');
 const cron = require("node-cron");
 const dotenv = require("dotenv");
-dotenv.config({path: '../.env'});
+dotenv.config();
 
 // schedules post each day at "00:00"
 const everyDay = "0 0 * * *";
