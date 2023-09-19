@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 
-const diceScrape = async (url) => {
+const diceWebScraper = async (url) => {
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
   const allPosts = [];
@@ -46,16 +46,18 @@ const diceScrape = async (url) => {
     url = url.split(`page=${pageNumber}`);
     pageNumber++;
     url = url.join(`page=${pageNumber}`);
-    console.log(pageNumber, pageNextExists, url);
+    // console.log(pageNumber, pageNextExists, url);
     await page.goto(url + pageNumber)
   }
 
   // UNCOMMENT TO CHECK
-  console.log(allPosts);
+  // console.log(allPosts);
   await browser.close();
   return allPosts;
 };
 
-diceScrape(
-  "https://www.dice.com/jobs?q=react%20-senior%20-sr%20-staff%20-architect%20-Principal%20-manager&location=Remote,%20OR,%20USA&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&radiusUnit=mi&page=1&pageSize=10&filters.postedDate=ONE&language=en&eid=S2Q_"
-);
+// diceWebScraper(
+//   "https://www.dice.com/jobs?q=react%20-senior%20-sr%20-staff%20-architect%20-Principal%20-manager&location=Remote,%20OR,%20USA&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&radiusUnit=mi&page=1&pageSize=10&filters.postedDate=ONE&language=en&eid=S2Q_"
+// );
+
+module.exports = diceWebScraper;

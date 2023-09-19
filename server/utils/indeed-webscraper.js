@@ -51,13 +51,14 @@ const indeedWebScraper = async (url) => {
     }
   }
   // UNCOMMENT TO CHECK
-  console.log(allPosts);
+  // console.log(allPosts);
 
   await browser.close();
   return allPosts;
 };
 
-indeedWebScraper(
-  "https://www.indeed.com/jobs?q=react+-senior+-sr+-staff+-architect+-Principal+-manager&l=Remote&fromage=1"
-);
-// export default { indeedWebScraper };
+// indeedWebScraper(
+//   "https://www.indeed.com/jobs?q=react+-senior+-sr+-staff+-architect+-Principal+-manager&l=Remote&fromage=1"
+// );
+
+module.exports = indeedWebScraper;
