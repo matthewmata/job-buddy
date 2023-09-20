@@ -38,7 +38,7 @@ const linkedinWebScraper = async (url) => {
 
   // adds posts
   allPosts.push(...pagePosts);
-  
+
   await browser.close();
   return allPosts;
 };

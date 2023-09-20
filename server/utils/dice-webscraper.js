@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 
 const diceWebScraper = async (url) => {
   // browser set up
-  const browser = await puppeteer.launch({ headless: 'new' });
+  const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   await page.goto(url);
 
@@ -54,7 +54,7 @@ const diceWebScraper = async (url) => {
     url = url.split(`page=${pageNumber}`);
     pageNumber++;
     url = url.join(`page=${pageNumber}`);
-    await page.goto(url + pageNumber)
+    await page.goto(url + pageNumber);
   }
 
   await browser.close();

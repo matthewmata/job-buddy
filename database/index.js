@@ -8,11 +8,11 @@ const password = process.env.PASSWORD;
 const clusterName = process.env.CLUSTERNAME;
 const databaseName = process.env.DATABASENAME;
 
-const url = `mongodb+srv://${username}:${password}@${clusterName}.mongodb.net/${databaseName}?retryWrites=true&w=majority`
+const url = `mongodb+srv://${username}:${password}@${clusterName}.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
 
 // connect to mongoDB database
 mongoose.connect(url, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
 });
 
 const db = mongoose.connection;
