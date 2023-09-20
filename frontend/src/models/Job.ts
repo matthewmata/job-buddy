@@ -1,9 +1,9 @@
 export interface Job {
-  title: String,
-  companyName: String,
-  companyLocation: String,
-  url: String,
-  salary: String,
-  description: String,
-  date: String,
+  title: string;
+  companyName: string;
+  companyLocation: string;
+  url: string;
+  salary: string;
+  description: string;
+  date: string;
 }

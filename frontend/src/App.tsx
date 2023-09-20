@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import JobList from "./components/JobsList";
 import axios from "axios";
 import { Job } from "./models/models";
 
@@ -6,23 +7,24 @@ const App: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [error, setError] = useState<Boolean>(false);
   
-  const serverUrl = process.env.REACT_APP_SERVER_URL!;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: Job[] = await axios.get(serverUrl);
-        console.log(response);
-        setJobs(response);
+        const serverUrl = process.env.REACT_APP_SERVER_URL!;
+        const response = await axios.get<Job[]>(serverUrl);
+        setJobs(response.data);
       } catch (err) {
         setError(true);
       }
-    }
+    };
     fetchData();
+  }, []);
 
-  }, [])
-
-  return <div>Test</div>;
+  return (
+    <>
+      <JobList jobs={jobs} />
+    </>
+  );
 };
 
 export default App;
