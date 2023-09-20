@@ -1,10 +1,10 @@
 const db = require("../database/models");
-const webscraperAggregation = require('./utils/webscraper-aggregation');
+const webscraperAggregation = require("./utils/webscraper-aggregation");
 
 module.exports = {
   // retrieve all posts
   retrieveAll: async (req, res) => {
-    const jobData = await db.find({})
+    const jobData = await db.find({});
     try {
       res.status(200).send(jobData);
     } catch (err) {
@@ -16,7 +16,7 @@ module.exports = {
     const newJobPostings = await webscraperAggregation();
     await db.insertMany(newJobPostings);
     try {
-      res.status(201).send('Successfully Added Jobs');
+      res.status(201).send("Successfully Added Jobs");
     } catch (err) {
       res.status(400).send(err);
     }
@@ -25,7 +25,7 @@ module.exports = {
   deleteAll: async (req, res) => {
     await db.deleteMany({});
     try {
-      res.status(200).send("Deleted All")
+      res.status(200).send("Deleted All");
     } catch (err) {
       res.status(404).send(err);
     }
